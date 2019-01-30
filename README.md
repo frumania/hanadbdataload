@@ -15,17 +15,23 @@ Inspired by https://blogs.saphana.com/2013/04/07/best-practices-for-sap-hana-dat
   * node -v
 * Existing SAP HANA schema
 * SAP HANA User to create tables and execute SQL
-* Enable "Allow indexserver import/export" ...
+* Disable CSV Import Path Filter: Configuration -> indexserver.ini -> import_export -> enable_csv_import_path_filter -> false. Can also be done via SQL:
+> ALTER SYSTEM
+> ALTER CONFIGURATION ('indexserver.ini', 'database')
+> SET ('import_export', 'enable_csv_import_path_filter') = 'false'
+> WITH RECONFIGURE;
 
 ## Installation
 
 * Download or clone code repository unpack to an arbitary folder on the HDB host
-* Grant execution rights (e.g. chmod -R <folder> 755) and set owner to **hdbadm** (e.g. chown -R <folder> hdbadm:sapsys)
+* Check execution rights and owner (should be **hdbadm** e.g. chown -R hanadbdataload hdbadm:sapsys)
 
 Execute as **hdbadm**!
 
 Install
 ```bash
+$ git clone https://github.com/frumania/hanadbdataload.git
+$ cd hanadbdataload
 $ npm config set @sap:registry https://npm.sap.com
 $ npm install
 ```
@@ -41,7 +47,7 @@ Generate CSV
 $ node generator.js
 ```
 
-Generate CSV (optional specify amount of rows, default 1M = 1000000)
+Optionally specify amount of rows, default 1M = 1000000
 ```bash
 $ node generator.js --rows 100000000
 ```
@@ -50,7 +56,7 @@ $ node generator.js --rows 100000000
 
 1 M rows = 38 MB @ 4.4s => ca. 9 MB/s
 
-### Step 1) Insert DATA
+### Step 1) Create tables and insert data
 
 Execute as **hdbadm**!
 
@@ -59,10 +65,12 @@ Insert into HANA DB
 $ node index.js --user <USER> --pw <PW>
 ```
 
-Insert into HANA DB with parameters
+Optional parameters
 ```bash
 $ node index.js --user <USER> --pw <PW> -it 2 --schema MYSCHEMA --host localhost --port 30015 --db HDB --tablePrefix GEN
 ```
+
+it = number of iterations / tables, default 1
 
 #### Performance Info
 
@@ -70,6 +78,6 @@ $ node index.js --user <USER> --pw <PW> -it 2 --schema MYSCHEMA --host localhost
 
 # License
 
-Licensed under MIT. See `LICENSE` for more details.
+[![Apache 2](https://img.shields.io/badge/license-Apache%202-blue.svg)](./LICENSE.txt)
 
 Copyright (c) 2019 Marcel Törpe
