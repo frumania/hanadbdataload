@@ -1,7 +1,7 @@
 # Overview
 
 This tool provides a performant technique to create large SAP HANA databases (> 1TBs) with random data for further benchmarking.
-Inspired by https://blogs.saphana.com/2013/04/07/best-practices-for-sap-hana-data-loads/
+Inspired by https://blogs.saphana.com/2013/04/07/best-practices-for-sap-hana-data-loads/ & https://blogs.sap.com/2014/04/10/tips-for-loading-large-csv-files-to-hana/.
 
 ## Prerequisites
 
