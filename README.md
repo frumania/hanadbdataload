@@ -58,6 +58,7 @@ $ node generator.js --rows 100000000
 
 Throughput 1M => 8.17 MB/s 186774.79 ROWS/s
 Throughput 10M => 9.47 MB/s 216334.47 ROWS/s
+Throughput 10M => 11.08 MB/s 253195.27 ROWS/s
 
 ### Step 2) Create tables and insert data
 
@@ -77,12 +78,8 @@ it = number of iterations / tables, default 1
 
 ### Performance Facts
 
-1 M rows = ...
-
-Execution time (hr): 234s 273.691261ms
-100000000
-4,5 GB
-= 20 MB/s
+Throughput 10M: 36.79 MB/s 840655.99 ROWS/s
+Throughput 100M: ...
 
 # License
 
