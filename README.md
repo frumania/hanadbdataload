@@ -8,16 +8,16 @@ Inspired by https://blogs.saphana.com/2013/04/07/best-practices-for-sap-hana-dat
 * SAP HANA database installation
 * OS access on HDB host via **root** as well as **hdbadm** user
 * [NodeJS](https://nodejs.org) >= 8.X installed on HDB host (as **root**), e.g. for SLES see below
-  * ```bash
-  sudo -i
-  zypper addrepo http://download.opensuse.org/distribution/leap/15.0/repo/oss/ node10
-  zypper refresh
-  zypper install nodejs10
-  node -v
-  ```
+```bash
+$ sudo -i
+$ zypper addrepo http://download.opensuse.org/distribution/leap/15.0/repo/oss/ node10
+$ zypper refresh
+$ zypper install nodejs10
+$ node -v
+```
 * Existing SAP HANA schema
-* SAP HANA User to create tables and execute SQL
-* Disable CSV Import Path Filter: Configuration -> indexserver.ini -> import_export -> enable_csv_import_path_filter -> false. Can also be done via SQL:
+* Existing SAP HANA user - to create tables and allow the execution of SQL commands
+* Disabled CSV Import Path Filter: Configuration -> indexserver.ini -> import_export -> enable_csv_import_path_filter -> **false**. Can also be done via SQL:
 > ALTER SYSTEM
 > ALTER CONFIGURATION ('indexserver.ini', 'database')
 > SET ('import_export', 'enable_csv_import_path_filter') = 'false'
@@ -25,12 +25,12 @@ Inspired by https://blogs.saphana.com/2013/04/07/best-practices-for-sap-hana-dat
 
 ## Installation
 
-* Download or clone code repository unpack to an arbitary folder on the HDB host
+* Clone code repository or download & unpack to an arbitary folder on the HDB host
 * Check execution rights and owner (should be **hdbadm** e.g. chown -R hanadbdataload hdbadm:sapsys)
 
 Execute as **hdbadm**!
 
-Install
+Deploy & Install via GIT
 ```bash
 $ git clone https://github.com/frumania/hanadbdataload.git
 $ cd hanadbdataload
