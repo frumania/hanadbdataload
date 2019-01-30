@@ -13,7 +13,7 @@ var password = typeof argv.pw !== 'undefined' ? argv.pw : "none";
 var db = "HDB";
 
 var mountdir = path.join(__dirname+"/");
-var table_prefix = "gen";
+var table_prefix = "GEN";
 var simulateOnly = false;
 
 const connection = hanaClient.createConnection();

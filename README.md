@@ -7,11 +7,15 @@ Inspired by https://blogs.saphana.com/2013/04/07/best-practices-for-sap-hana-dat
 
 * SAP HANA database installation
 * OS access on HDB host via **root** as well as **hdmadm** user
-* [NodeJS](https://nodejs.org) >= 6.X installed on HDB host (as **root**)
+* [NodeJS](https://nodejs.org) >= 8.X installed on HDB host (as **root**)
 * Existing SAP HANA schema
 * SAP HANA User to create tables and execute SQL
 
-zypper install nodejs6
+sudo -i
+zypper addrepo http://download.opensuse.org/distribution/leap/15.0/repo/oss/ node10
+zypper refresh
+zypper install nodejs10
+node -v
 
 ## Installation
 
@@ -22,6 +26,7 @@ Execute as **hdmadm**!
 
 Install
 ```bash
+$ npm config set @sap:registry https://npm.sap.com
 $ npm install
 ```
 
