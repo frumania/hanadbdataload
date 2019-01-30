@@ -7,16 +7,15 @@ Inspired by https://blogs.saphana.com/2013/04/07/best-practices-for-sap-hana-dat
 
 * SAP HANA database installation
 * OS access on HDB host via **root** as well as **hdbadm** user
-* [NodeJS](https://nodejs.org) >= 8.X installed on HDB host (as **root**)
+* [NodeJS](https://nodejs.org) >= 8.X installed on HDB host (as **root**), e.g. for SLES see below
   * sudo -i
   * zypper addrepo http://download.opensuse.org/distribution/leap/15.0/repo/oss/ node10
   * zypper refresh
   * zypper install nodejs10
-* node -v
+  * node -v
 * Existing SAP HANA schema
 * SAP HANA User to create tables and execute SQL
-
-Allow indexserver import/export ...
+* Enable "Allow indexserver import/export" ...
 
 ## Installation
 
