@@ -32,6 +32,22 @@ const connectionParams = {
     databaseName : db
 }
 
+//Not used
+function Test()
+{
+    var sql = `SELECT COUNT(*) FROM "DATA_LAKE"."GEN0"`;
+
+    connection.exec(sql, (err, rows) => {
+
+        if (err) {
+            return console.error('SQL execute error:', err);
+        }
+
+        console.log("Results:", rows);
+        console.log(`Query '${sql}' returned ${rows.length} items`);
+    });
+}
+
 function WriteFile(file, body, resolve)
 {
     fs.writeFile(file, body, function(err) {
@@ -87,13 +103,13 @@ async function executeSQL()
                                 console.log("[INFO] Results:", rows);
                                 console.log(`[INFO] Query '${sql}' returned ${rows.length} items`);
                             }
-
-                            if(kindex == sqlstatements.length-1)
-                            Test();
                         });
                     });
                 }
             }
+
+            if(kindex == sqlstatements.length-1)
+            Test();
         }
 
         var hrend = process.hrtime(hrstart)
@@ -132,19 +148,3 @@ connection.connect(connectionParams, (err) => {
 
     //connection.disconnect();
 });
-
-//Not used
-function Test()
-{
-    var sql = `SELECT COUNT(*) FROM "DATA_LAKE"."GEN0"`;
-
-    connection.exec(sql, (err, rows) => {
-
-        if (err) {
-            return console.error('SQL execute error:', err);
-        }
-
-        console.log("Results:", rows);
-        console.log(`Query '${sql}' returned ${rows.length} items`);
-    });
-}
