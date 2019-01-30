@@ -42,7 +42,9 @@ function Test(hrstart, table)
             return console.error('[ERROR] SQL execute error:', err);
         }
 
-        console.log("[INFO] # Rows in table "+table+" -> "+rows[0]);
+        console.log(rows);
+
+        console.log("[INFO] # Rows in table "+table+" -> "+rows[0].ROWS);
 
         var hrend = process.hrtime(hrstart)
         console.info('[INFO] Execution time: %ds %dms', hrend[0], hrend[1] / 1000000);
@@ -52,7 +54,7 @@ function Test(hrstart, table)
         const fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
 
         var kpimb = fileSizeInMegabytes / ( hrend[0] + hrend[1] / 1000000000 );
-        var kpirows = rows[0] / ( hrend[0] + hrend[1] / 1000000000 );
+        var kpirows = rows[0].ROWS / ( hrend[0] + hrend[1] / 1000000000 );
 
         console.info('[INFO] Throughput: '+Math.round(kpimb * 100)/100+' MB/s '+Math.round(kpirows * 100)/100+' ROWS/s');
 
