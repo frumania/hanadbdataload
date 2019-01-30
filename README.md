@@ -56,9 +56,11 @@ $ node generator.js --rows 100000000
 
 ### Performance Facts
 
-Throughput 1M => 8.17 MB/s 186774.79 ROWS/s
-Throughput 10M => 9.47 MB/s 216334.47 ROWS/s
-Throughput 10M => 11.08 MB/s 253195.27 ROWS/s
+AWS EC2 r4.4xlarge (16 cores, 122GB memory, SSD)
+
+Throughput 1M (46MB) => 8.17 MB/s 186774.79 ROWS/s
+Throughput 10M (460MB) => 11.08 MB/s 253195.27 ROWS/s
+Throughput 100M (4.5GB) => tbd MB/s tbd ROWS/s
 
 ### Step 2) Create tables and insert data
 
@@ -71,15 +73,18 @@ $ node index.js --user <USER> --pw <PW>
 
 Optional parameters
 ```bash
-$ node index.js --user <USER> --pw <PW> -it 2 --schema MYSCHEMA --host localhost --port 30015 --db HDB --tablePrefix GEN
+$ node index.js --user <USER> --pw <PW> --it 1 --schema MYSCHEMA --host localhost --port 30015 --db HDB --tablePrefix GEN
 ```
 
 it = number of iterations / tables, default 1
 
 ### Performance Facts
 
-Throughput 10M: 36.79 MB/s 840655.99 ROWS/s
-Throughput 100M: ...
+AWS EC2 r4.4xlarge (16 cores, 122GB memory, SSD)
+
+Throughput 10M (460MB) => 36.79 MB/s 840655.99 ROWS/s
+Throughput 100M (4.5GB) => ...
+Throughput 1B (45GB) => ... (--it 10)
 
 # License
 
