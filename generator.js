@@ -11,15 +11,15 @@ var rows = typeof argv.rows !== 'undefined' ? argv.rows : 1000000;  //1MILLION R
 var writer = fs.createWriteStream(path.normalize(file));
 
 generate.Generator.ascii3 = function(gen) {
-    return generate.Generator.ascii(gen).substring(0, 3);
+    return '"'+generate.Generator.ascii(gen).substring(0, 3)+'"';
 };
 
 generate.Generator.ascii8 = function(gen) {
-    return generate.Generator.ascii(gen).substring(0, 8);
+    return '"'+generate.Generator.ascii(gen).substring(0, 8)+'"';
 };
 
 generate.Generator.ascii16 = function(gen) {
-    return generate.Generator.ascii(gen).substring(0, 16);
+    return '"'+generate.Generator.ascii(gen).substring(0, 16)+'"';
 };
 
 generate.Generator.smallint = function(gen) {
