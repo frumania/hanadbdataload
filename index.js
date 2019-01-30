@@ -1,20 +1,26 @@
 const hanaClient = require("@sap/hana-client");
 const fs = require("fs");
 const path = require("path");
-var argv = require('minimist')(process.argv.slice(2));
+const argv = require('minimist')(process.argv.slice(2));
 
 //Amount of Iterations
-var iterations = 2;
-var schema = "DATA_LAKE";
-var host = "3.122.200.232";
-var port = "30215";
-var user = typeof argv.user !== 'undefined' ? argv.user : "none";
-var password = typeof argv.pw !== 'undefined' ? argv.pw : "none";
-var db = "HDB";
-
+var iterations = typeof argv.it !== 'undefined' ? argv.it : 1;
+//Connection Details
+var schema = typeof argv.schema !== 'undefined' ? argv.schema : "DATA_LAKE";
+var host = typeof argv.host !== 'undefined' ? argv.host : "3.122.200.232";
+var port = typeof argv.port !== 'undefined' ? argv.port : "30215";
+var user = typeof argv.user !== 'undefined' ? argv.user : "";
+var password = typeof argv.pw !== 'undefined' ? argv.pw : "";
+var db = typeof argv.db !== 'undefined' ? argv.db : "HDB";
+//Misc
+var table_prefix = typeof argv.tablePrefix !== 'undefined' ? argv.tablePrefix : "GEN";
 var mountdir = path.join(__dirname+"/");
-var table_prefix = "GEN";
 var simulateOnly = false;
+
+if(user == "" || password == "")
+{return console.error("[ERROR] User or password not specified, exiting!");}
+
+console.debug(argv);
 
 const connection = hanaClient.createConnection();
 
@@ -31,7 +37,7 @@ function WriteFile(file, body, resolve)
     fs.writeFile(file, body, function(err) {
         resolve("Stuff worked!");
         if(err) {
-            return console.log(err);
+            return console.error(err);
         }
         console.log('[INFO] File <'+file+'> written successfully!');
     });
@@ -111,18 +117,21 @@ connection.connect(connectionParams, (err) => {
         mypromises.push(mypromise);
     }
 
-    //WAIT UNTIL FILES WRITTEN
+    //WAIT UNTIL .CTL FILES WRITTEN
     Promise.all(mypromises).then(function(values) {
         console.log("[INFO] All .ctl files written");
         executeSQL();
     });
 
     //connection.disconnect();
+});
 
-    /*var sql = `SELECT * FROM "DATA_LAKE"."EBS_LOGS" LIMIT 5 `;
+//Not used
+function TestConnection()
+{
+    var sql = `SELECT * FROM "DATA_LAKE"."EBS_LOGS" LIMIT 5 `;
 
     connection.exec(sql, (err, rows) => {
-        //connection.disconnect();
 
         if (err) {
             return console.error('SQL execute error:', err);
@@ -130,5 +139,5 @@ connection.connect(connectionParams, (err) => {
 
         console.log("Results:", rows);
         console.log(`Query '${sql}' returned ${rows.length} items`);
-    });*/
-});
+    });
+}

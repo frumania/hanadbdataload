@@ -41,7 +41,7 @@ Generate CSV
 $ node generator.js
 ```
 
-Generate CSV (optional specify amount of rows)
+Generate CSV (optional specify amount of rows, default 1M = 1000000)
 ```bash
 $ node generator.js --rows 100000000
 ```
@@ -56,12 +56,12 @@ Execute as **hdbadm**!
 
 Insert into HANA DB
 ```bash
-$ node index.js
+$ node index.js --user <USER> --pw <PW>
 ```
 
 Insert into HANA DB with parameters
 ```bash
-$ node index.js --schema DATALAKE ...
+$ node index.js --user <USER> --pw <PW> -it 2 --schema MYSCHEMA --host localhost --port 30015 --db HDB --tablePrefix GEN
 ```
 
 #### Performance Info
