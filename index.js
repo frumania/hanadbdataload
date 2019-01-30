@@ -42,6 +42,8 @@ function Test(hrstart, table)
             return console.error('[ERROR] SQL execute error:', err);
         }
 
+        console.log(rows);
+
         console.log("[INFO] # Rows in table "+table+" -> "+rows);
 
         var hrend = process.hrtime(hrstart)
