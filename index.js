@@ -34,7 +34,7 @@ const connectionParams = {
 
 function Test(hrstart, table)
 {
-    var sql = `SELECT COUNT(*) FROM "`+schema+`"."`+table+`"`;
+    var sql = `SELECT COUNT(*) AS ROWS FROM "`+schema+`"."`+table+`"`;
 
     connection.exec(sql, (err, rows) => {
 
@@ -44,7 +44,7 @@ function Test(hrstart, table)
 
         console.log(rows);
 
-        console.log("[INFO] # Rows in table "+table+" -> "+rows);
+        console.log("[INFO] # Rows in table "+table+" -> "+rows.ROWS);
 
         var hrend = process.hrtime(hrstart)
         console.info('[INFO] Execution time: %ds %dms', hrend[0], hrend[1] / 1000000);
@@ -54,7 +54,7 @@ function Test(hrstart, table)
         const fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
 
         var kpimb = fileSizeInMegabytes / ( hrend[0] + hrend[1] / 1000000000 );
-        var kpirows = rows / ( hrend[0] + hrend[1] / 1000000000 );
+        var kpirows = rows.ROWS / ( hrend[0] + hrend[1] / 1000000000 );
 
         console.info('[INFO] Throughput: '+Math.round(kpimb * 100)/100+' MB/s '+Math.round(kpirows * 100)/100+' ROWS/s');
 
