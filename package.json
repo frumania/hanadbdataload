@@ -1,0 +1,17 @@
+{
+  "name": "hanadbdataload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Marcel Törpe",
+  "license": "tbd",
+  "dependencies": {
+    "@sap/hana-client": "^2.3.134",
+    "csv-generate": "^3.2.0",
+    "minimist": "^1.2.0"
+  }
+}
