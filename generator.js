@@ -6,7 +6,9 @@ var argv = require('minimist')(process.argv.slice(2));
 var hrstart = process.hrtime();
 
 var file = 'my.csv';
-var rows = typeof argv.rows !== 'undefined' ? argv.rows : 1;  //1000000 = 1MILLION ROWS
+var rows = typeof argv.rows !== 'undefined' ? argv.rows : 1000000;  //1000000 = 1MILLION ROWS
+
+console.log(argv);
 
 var writer = fs.createWriteStream(path.normalize(file));
 
@@ -38,6 +40,15 @@ writer.on('close', (chunk) => {
 
     var hrend = process.hrtime(hrstart)
 
-    console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
+    console.info('[INFO] Execution time: %ds %dms', hrend[0], hrend[1] / 1000000);
+
+    const stats = fs.statSync(file);
+    const fileSizeInBytes = stats.size;
+    const fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
+
+    var kpimb = fileSizeInMegabytes / ( hrend[0] + hrend[1] / 1000000000 );
+    var kpirows = rows / ( hrend[0] + hrend[1] / 1000000000 );
+
+    console.info('[INFO] Throughput: '+Math.round(kpimb * 100)/100+' MB/s '+Math.round(kpirows * 100)/100+' ROWS/s');
 
 });

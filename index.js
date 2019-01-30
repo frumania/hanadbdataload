@@ -32,19 +32,30 @@ const connectionParams = {
     databaseName : db
 }
 
-//Not used
-function Test()
+function Test(hrstart, table)
 {
-    var sql = `SELECT COUNT(*) FROM "DATA_LAKE"."GEN0"`;
+    var sql = `SELECT COUNT(*) FROM "`+schema+`"."`+table+`"`;
 
     connection.exec(sql, (err, rows) => {
 
         if (err) {
-            return console.error('SQL execute error:', err);
+            return console.error('[ERROR] SQL execute error:', err);
         }
 
-        console.log("Results:", rows);
-        console.log(`Query '${sql}' returned ${rows.length} items`);
+        console.log("[INFO] # Rows in table "+table+" -> "+rows.length);
+
+        var hrend = process.hrtime(hrstart)
+        console.info('[INFO] Execution time: %ds %dms', hrend[0], hrend[1] / 1000000);
+
+        const stats = fs.statSync("my.csv");
+        const fileSizeInBytes = stats.size;
+        const fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
+
+        var kpimb = fileSizeInMegabytes / ( hrend[0] + hrend[1] / 1000000000 );
+        var kpirows = rows.length / ( hrend[0] + hrend[1] / 1000000000 );
+
+        console.info('[INFO] Throughput: '+Math.round(kpimb * 100)/100+' MB/s '+Math.round(kpirows * 100)/100+' ROWS/s');
+
     });
 }
 
@@ -109,11 +120,8 @@ async function executeSQL()
             }
 
             if(kindex == sqlstatements.length-1)
-            Test();
+            Test(hrstart, table);
         }
-
-        var hrend = process.hrtime(hrstart)
-        console.info('[INFO] Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
     }
 }
 
