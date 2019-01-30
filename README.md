@@ -54,11 +54,11 @@ Optionally specify amount of rows, default 1M = 1000000
 $ node generator.js --rows 100000000
 ```
 
-#### Performance Info
+### Performance Facts
 
 1 M rows = 38 MB @ 4.4s => ca. 9 MB/s
 
-### Step 1) Create tables and insert data
+### Step 2) Create tables and insert data
 
 Execute as **hdbadm**!
 
@@ -74,7 +74,7 @@ $ node index.js --user <USER> --pw <PW> -it 2 --schema MYSCHEMA --host localhost
 
 it = number of iterations / tables, default 1
 
-#### Performance Info
+### Performance Facts
 
 1 M rows = ...
 

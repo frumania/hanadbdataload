@@ -6,7 +6,7 @@ var argv = require('minimist')(process.argv.slice(2));
 var hrstart = process.hrtime();
 
 var file = 'my.csv';
-var rows = typeof argv.rows !== 'undefined' ? argv.rows : 1;  //1MILLION ROWS
+var rows = typeof argv.rows !== 'undefined' ? argv.rows : 1;  //1000000 = 1MILLION ROWS
 
 var writer = fs.createWriteStream(path.normalize(file));
 
@@ -36,7 +36,7 @@ length: rows
 
 writer.on('close', (chunk) => {
 
-    hrend = process.hrtime(hrstart)
+    var hrend = process.hrtime(hrstart)
 
     console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
 

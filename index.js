@@ -47,6 +47,8 @@ async function executeSQL()
 {
     for (let index = 0; index < iterations; index++) {
 
+        var hrstart = process.hrtime();
+
         var table = table_prefix+index;
         var file = table+".ctl";
 
@@ -91,6 +93,8 @@ async function executeSQL()
             }
         }
 
+        var hrend = process.hrtime(hrstart)
+        console.info('[INFO] Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
     }
 }
 
