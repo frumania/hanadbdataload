@@ -87,6 +87,9 @@ async function executeSQL()
                                 console.log("[INFO] Results:", rows);
                                 console.log(`[INFO] Query '${sql}' returned ${rows.length} items`);
                             }
+
+                            if(kindex == sqlstatements.length-1)
+                            Test();
                         });
                     });
                 }
@@ -131,9 +134,9 @@ connection.connect(connectionParams, (err) => {
 });
 
 //Not used
-function TestConnection()
+function Test()
 {
-    var sql = `SELECT * FROM "DATA_LAKE"."EBS_LOGS" LIMIT 5 `;
+    var sql = `SELECT COUNT(*) FROM "DATA_LAKE"."GEN0"`;
 
     connection.exec(sql, (err, rows) => {
 
