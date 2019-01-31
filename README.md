@@ -86,6 +86,8 @@ Throughput 10M (460MB) => 36.79 MB/s 840655.99 ROWS/s
 Throughput 100M (4.5GB) => ...
 Throughput 1B (45GB) => ... (--it 10)
 
+Goal 100MB/s
+
 # License
 
 [![Apache 2](https://img.shields.io/badge/license-Apache%202-blue.svg)](./LICENSE.txt)
