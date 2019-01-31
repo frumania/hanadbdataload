@@ -88,7 +88,7 @@ AWS EC2 r4.4xlarge (16 cores, 122GB memory, SSD)
 => Goal 100 MB/s
 
 Throughput 10M rows (460MB) => 28.25 MB/s 645343.03 rows/s
-Throughput 100M rows (4.5GB) => 25.76 MB/s 588521.71 rows/s
+Throughput 100M rows (4.5GB) => 28.29 MB/s 646344.41 rows/s
 Throughput 1B rows (45GB) => ... (--it 10)
 
 (Merge uses 10% CPU only)
