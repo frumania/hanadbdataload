@@ -58,9 +58,11 @@ $ node generator.js --rows 100000000
 
 AWS EC2 r4.4xlarge (16 cores, 122GB memory, SSD)
 
-Throughput 1M (46MB) => 10.47 MB/s 239180.18 ROWS/s
-Throughput 10M (460MB) => 10.84 MB/s 247556.62 ROWS/s
-Throughput 100M (4.5GB) => tbd MB/s tbd ROWS/s
+Throughput 1M rows (46MB) => 10.47 MB/s 239180.18 rows/s
+Throughput 10M rows (460MB) => 10.84 MB/s 247556.62 rows/s
+Throughput 100M rows (4.5GB) => 10.94 MB/s 250000 rows/s
+
+@ avg. 6% CPU Util
 
 ### Step 2) Create tables and insert data
 
@@ -80,13 +82,17 @@ it = number of iterations / tables, default 1
 
 ### Performance Facts
 
+> On a single-node Medium appliance with 40 cores, you should expect around 275MB/sec of throughput into HANA.
+
 AWS EC2 r4.4xlarge (16 cores, 122GB memory, SSD)
+=> Goal 100 MB/s
 
-Throughput 10M (460MB) => 28.25 MB/s 645343.03 ROWS/s
-Throughput 100M (4.5GB) => ...
-Throughput 1B (45GB) => ... (--it 10)
+Throughput 10M rows (460MB) => 28.25 MB/s 645343.03 rows/s
+Throughput 100M rows (4.5GB) => 25.76 MB/s 588521.71 rows/s
+Throughput 1B rows (45GB) => ... (--it 10)
 
-Goal 100MB/s
+(Merge uses 10% CPU only)
+103s insert only anstatt 168s
 
 # License
 

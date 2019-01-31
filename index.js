@@ -56,7 +56,7 @@ function Test(hrstart, table)
         var kpimb = fileSizeInMegabytes / ( hrend[0] + hrend[1] / 1000000000 );
         var kpirows = rows[0].ROWS / ( hrend[0] + hrend[1] / 1000000000 );
 
-        console.info('[INFO] Throughput: '+Math.round(kpimb * 100)/100+' MB/s '+Math.round(kpirows * 100)/100+' ROWS/s');
+        console.info('[INFO] Throughput: '+Math.round(kpimb * 100)/100+' MB/s '+Math.round(kpirows * 100)/100+' rows/s');
 
     });
 }
