@@ -58,8 +58,8 @@ $ node generator.js --rows 100000000
 
 AWS EC2 r4.4xlarge (16 cores, 122GB memory, SSD)
 
-Throughput 1M (46MB) => 8.17 MB/s 186774.79 ROWS/s
-Throughput 10M (460MB) => 11.08 MB/s 253195.27 ROWS/s
+Throughput 1M (46MB) => 10.47 MB/s 239180.18 ROWS/s
+Throughput 10M (460MB) => 10.84 MB/s 247556.62 ROWS/s
 Throughput 100M (4.5GB) => tbd MB/s tbd ROWS/s
 
 ### Step 2) Create tables and insert data
