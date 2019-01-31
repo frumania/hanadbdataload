@@ -82,7 +82,7 @@ it = number of iterations / tables, default 1
 
 AWS EC2 r4.4xlarge (16 cores, 122GB memory, SSD)
 
-Throughput 10M (460MB) => 36.79 MB/s 840655.99 ROWS/s
+Throughput 10M (460MB) => 28.25 MB/s 645343.03 ROWS/s
 Throughput 100M (4.5GB) => ...
 Throughput 1B (45GB) => ... (--it 10)
 
